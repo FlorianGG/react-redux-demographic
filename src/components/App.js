@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import SearchBar from '../containers/search-bar';
+import MortalityList from '../containers/MortalityList';
+import SearchBar from '../containers/SearchBar';
 
 const DEFAULT_COUNTRY = 'France'
 
@@ -9,6 +10,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar defaultCountry={DEFAULT_COUNTRY} />
+        <MortalityList/>
       </div>
     )
   }

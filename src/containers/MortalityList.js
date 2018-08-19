@@ -1,0 +1,15 @@
+import React, { Component } from 'react';
+
+import MortalityListItem from '../components/MortalityListItem';
+
+class MortalityList extends Component {
+  render() {
+    return (
+      <div>
+        <MortalityListItem/>
+      </div>
+    );
+  }
+}
+
+export default MortalityList;
