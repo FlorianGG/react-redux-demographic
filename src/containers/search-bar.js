@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getCountries } from '../actions';
+import { getCountries, getMortality } from '../actions';
 
 class SearchBar extends Component {
   state = {
@@ -37,7 +37,9 @@ class SearchBar extends Component {
 
   //arrow function to bind this
   search = e => {
-    this.setState({ selectedCountry: e.target.value })
+    this.setState({ selectedCountry: e.target.value }, () => {
+      this.props.getMortality(this.state.selectedCountry)
+    })
   }
 
   render() {
@@ -52,7 +54,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getCountries }, dispatch)
+  return bindActionCreators({ getCountries, getMortality }, dispatch)
 }
 export default connect(
   mapStateToProps,
