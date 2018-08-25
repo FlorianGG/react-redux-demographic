@@ -22,9 +22,7 @@ export function getCountries() {
 export function getMortality(country){
   return function(dispatch){
     axios(`${API_END_POINT}mortality-distribution/${country}/male/${DEFAULT_PARAMS}`).then((responseMale) => {
-      console.log(responseMale)
       axios(`${API_END_POINT}mortality-distribution/${country}/female/${DEFAULT_PARAMS}`).then((responseFemale) => {
-        console.log(responseFemale)
         dispatch({type: GET_MORTALITY, payload: {
           country : country,
           male : responseMale.data.mortality_distribution,

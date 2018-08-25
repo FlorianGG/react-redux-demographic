@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar defaultCountry={DEFAULT_COUNTRY} />
-        <MortalityList/>
+        <MortalityList defaultCountry={DEFAULT_COUNTRY}/>
       </div>
     )
   }

@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { GET_MORTALITY } from '../actions';
+import { getMortality } from '../actions';
 import MortalityListItem from '../components/MortalityListItem';
 
 class MortalityList extends Component {
+  componentWillMount (){
+    this.props.getMortality(this.props.defaultCountry);
+  }
   render() {
     const {mortalities} = this.props;
     return (
@@ -14,14 +17,14 @@ class MortalityList extends Component {
           <thead>
             <tr>
               <th>Pays</th>
-              <th>Hommes</th>
-              <th>Femmes</th>
+              <th className="col-md-6">Hommes</th>
+              <th className="col-md-6">Femmes</th>
             </tr>
           </thead>
           <tbody>
-
-            {mortalities.lenght && mortalities.map((data) => {
-                return (<MortalityListItem key={data.country}/>)
+            {
+              mortalities.map((data) => {
+                return (<MortalityListItem key={data.country} mortality={data}/>)
               })
             }
           </tbody>
@@ -36,8 +39,8 @@ function mapStateToProps(state) {
     mortalities: state.mortality,
   }
 }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getMortality }, dispatch)
+}
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ getCountries, getMortality }, dispatch)
-// }
-export default connect(mapStateToProps)(MortalityList);
+export default connect(mapStateToProps, mapDispatchToProps)(MortalityList);
